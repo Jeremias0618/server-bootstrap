@@ -87,6 +87,11 @@ sudo phpenmod snmp
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 
+# --- 11. Configurar zona horaria ---
+msg "Configurando zona horaria a Perú..."
+sudo timedatectl set-timezone America/Lima
+timedatectl | grep "Time zone"
+
 # --- Fin ---
 msg "✅ Instalación completada con éxito.
 Sistema FiberOps 2025 instalado en /var/www/html/
