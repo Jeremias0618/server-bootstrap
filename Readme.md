@@ -38,8 +38,9 @@ server-bootstrap/
 
 ## 🔧 Uso
 
+### Opción 1: Usando los scripts del repositorio
+
 1. Clona este repositorio:
-   
    ```bash
    git clone https://github.com/Jeremias0618/server-bootstrap.git
    cd server-bootstrap
@@ -55,6 +56,32 @@ server-bootstrap/
 
    ```bash
    ./install_fiberops.sh
+   ```
+
+---
+
+### Opción 2: Crear tu propio script manualmente
+
+📌 Cómo usarlo:
+
+1. Crea el archivo:
+
+   ```bash
+   nano install.sh
+   ```
+
+   (pega dentro todo el contenido del script)
+
+2. Dale permisos de ejecución:
+
+   ```bash
+   chmod +x install.sh
+   ```
+
+3. Ejecútalo:
+
+   ```bash
+   ./install.sh
    ```
 
 ---
