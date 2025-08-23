@@ -71,7 +71,7 @@ php -m | grep intl || echo "⚠️ intl no se habilitó correctamente"
 
 # Extensiones PostgreSQL y PDO
 sudo apt install php8.3-pgsql php8.3-mbstring php8.3-xml php8.3-zip -y
-sudo apt install php-pgsql php-pdo -y
+sudo apt install php8.1-pgsql php8.1-mysql -y
 php -m | grep -E "(pdo|pgsql)" || echo "⚠️ Extensiones PDO/PGSQL no cargadas"
 
 # Reiniciar Apache después de nuevas extensiones
