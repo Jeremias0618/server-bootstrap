@@ -58,11 +58,31 @@ sudo apt install snmp snmpd libpq-dev python3-dev python3-pip -y
 sudo apt install snmp snmp-mibs-downloader php-snmp -y
 pip3 install psycopg2-binary
 
+# --- 5.1 Extensiones y dependencias adicionales ---
+msg "Instalando extensiones adicionales (GD, intl, PDO, etc.)..."
+# Extensión GD para PHP 8.3
+sudo apt install php8.3-gd -y
+php -m | grep gd || echo "⚠️ GD no se habilitó correctamente"
+
+# Extensión intl para PHP 8.1
+sudo apt install php8.1-intl -y
+sudo phpenmod -v 8.1 intl
+php -m | grep intl || echo "⚠️ intl no se habilitó correctamente"
+
+# Extensiones PostgreSQL y PDO
+sudo apt install php8.3-pgsql php8.3-mbstring php8.3-xml php8.3-zip -y
+sudo apt install php-pgsql php-pdo -y
+php -m | grep -E "(pdo|pgsql)" || echo "⚠️ Extensiones PDO/PGSQL no cargadas"
+
+# Reiniciar Apache después de nuevas extensiones
+sudo systemctl restart apache2
+
 # --- 6. Base de datos PostgreSQL ---
 msg "Instalando PostgreSQL..."
-sudo apt install postgresql postgresql-contrib php-pgsql -y
+sudo apt install postgresql postgresql-contrib -y
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
+sudo systemctl status postgresql --no-pager
 
 # --- 7. Instalar Composer ---
 msg "Instalando Composer..."
@@ -74,7 +94,8 @@ cd /var/www/html/
 sudo mkdir -p /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/
 sudo chmod -R 777 /var/www/html/
-sudo chmod -R 777 /var/www/html//logs
+sudo mkdir -p /var/www/html/logs
+sudo chmod -R 777 /var/www/html/logs
 
 # --- 9. Instalar dependencias PHP del proyecto ---
 msg "Instalando dependencias PHP del proyecto..."
