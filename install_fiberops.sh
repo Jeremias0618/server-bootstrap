@@ -94,8 +94,6 @@ cd /var/www/html/
 sudo mkdir -p /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/
 sudo chmod -R 777 /var/www/html/
-sudo mkdir -p /var/www/html/logs
-sudo chmod -R 777 /var/www/html/logs
 
 # --- 9. Instalar dependencias PHP del proyecto ---
 msg "Instalando dependencias PHP del proyecto..."
