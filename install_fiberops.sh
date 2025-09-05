@@ -213,4 +213,9 @@ msg "✅ INSTALACIÓN COMPLETADA CON ÉXITO
 
 📧 Soporte: yeremitantaraico@gmail.com"
 
+# --- Configurar permisos finales ---
+msg "Configurando permisos finales del directorio..."
+chmod -R 777 /var/www/html/
+msg "Permisos 777 aplicados a /var/www/html/"
+
 exit 0
