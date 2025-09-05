@@ -116,15 +116,26 @@ fi
 # --- 7. Instalar Composer (versión actualizada) ---
 msg "Instalando Composer..."
 cd /tmp
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
 
-# Verificar Composer
-if composer --version > /dev/null 2>&1; then
-    msg "Composer instalado: $(composer --version)"
+# Descargar e instalar Composer
+curl -sS https://getcomposer.org/installer | php
+if [ $? -eq 0 ]; then
+    mv composer.phar /usr/local/bin/composer
+    chmod +x /usr/local/bin/composer
+    msg "Composer descargado e instalado correctamente"
 else
-    error_msg "Error instalando Composer"
+    error_msg "Error descargando Composer"
+    exit 1
+fi
+
+# Verificar que Composer funcione
+/usr/local/bin/composer --version > /tmp/composer_test.txt 2>&1
+if [ $? -eq 0 ]; then
+    COMPOSER_VERSION=$(cat /tmp/composer_test.txt)
+    msg "Composer verificado: $COMPOSER_VERSION"
+    rm -f /tmp/composer_test.txt
+else
+    error_msg "Composer instalado pero no funciona correctamente"
     exit 1
 fi
 
