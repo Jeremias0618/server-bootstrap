@@ -109,6 +109,7 @@ sudo systemctl restart apache2
 # --- 11. Configurar zona horaria ---
 msg "Configurando zona horaria a Perú..."
 sudo timedatectl set-timezone America/Lima
+sudo timedatectl set-local-rtc 1
 timedatectl | grep "Time zone"
 
 # --- Fin ---
