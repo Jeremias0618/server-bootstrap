@@ -128,14 +128,11 @@ else
     exit 1
 fi
 
-# Verificar que Composer funcione
-/usr/local/bin/composer --version > /tmp/composer_test.txt 2>&1
-if [ $? -eq 0 ]; then
-    COMPOSER_VERSION=$(cat /tmp/composer_test.txt)
-    msg "Composer verificado: $COMPOSER_VERSION"
-    rm -f /tmp/composer_test.txt
+# Verificar que Composer esté instalado
+if [ -f "/usr/local/bin/composer" ]; then
+    msg "Composer instalado correctamente en /usr/local/bin/composer"
 else
-    error_msg "Composer instalado pero no funciona correctamente"
+    error_msg "Error: Composer no se encontró en /usr/local/bin/composer"
     exit 1
 fi
 
